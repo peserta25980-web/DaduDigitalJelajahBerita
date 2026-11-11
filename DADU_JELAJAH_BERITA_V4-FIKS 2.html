@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dadu Jelajah Berita</title>
+<style>
+:root{--ink:#29324b;--purple:#7464d8;--pink:#ff7ca8;--yellow:#ffd45e;--mint:#74dbc0;--blue:#69c8f0;--orange:#ff9b65;--paper:#fffdf8}
+*{box-sizing:border-box} body{margin:0;min-height:100vh;font-family:'Trebuchet MS','Segoe UI',sans-serif;color:var(--ink);background:linear-gradient(135deg,#fff0f6 0%,#fff9df 42%,#e7f8ff 100%);overflow-x:hidden}
+body:before,body:after{content:'✦';position:fixed;font-size:100px;color:#fff;opacity:.45;pointer-events:none}body:before{top:20px;left:2%;transform:rotate(-15deg)}body:after{right:3%;bottom:8px;transform:rotate(20deg)}
+.app{width:min(1120px,100%);margin:auto;padding:26px 18px 30px;position:relative;z-index:1}.hero{text-align:center;margin:6px auto 24px}.pill{display:inline-block;background:#fff;border:2px solid #efe8ff;border-radius:999px;padding:8px 15px;font-size:.78rem;font-weight:900;letter-spacing:.09em;color:#7160c7;box-shadow:0 5px 0 #e8e0ff}h1{font-size:clamp(2.1rem,5vw,3.8rem);line-height:1.03;margin:18px 0 12px;letter-spacing:-.04em}h1 .rainbow{background:linear-gradient(90deg,#7564db,#ff659d,#ff9a4e);-webkit-background-clip:text;background-clip:text;color:transparent}.hero p{max-width:690px;margin:auto;line-height:1.65;color:#606984;font-size:1.03rem}.spark{display:inline-block;animation:float 2.4s ease-in-out infinite}@keyframes float{50%{transform:translateY(-7px) rotate(12deg)}}
+.game-guide{max-width:850px;margin:18px auto 26px;padding:19px 22px 20px;text-align:left;
+background:linear-gradient(135deg,#fff 0%,#fff8fd 42%,#f3fbff 100%);border:3px solid #fff;
+border-radius:24px;box-shadow:0 8px 0 rgba(255,124,168,.18),0 14px 32px rgba(60,64,110,.09);position:relative;overflow:hidden}
+.game-guide:before{content:'✦';position:absolute;right:17px;top:8px;color:#ffbd4a;font-size:30px;transform:rotate(12deg)}
+.guide-heading{text-align:center;font-weight:1000;letter-spacing:.08em;color:#7464d8;font-size:.92rem;margin-bottom:13px}
+.game-guide ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.game-guide li{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;background:#fff;border:1.5px solid #eee8ff;border-radius:15px;line-height:1.45;font-size:.91rem;font-weight:750;color:#424b68}
+.guide-num{flex:0 0 28px;height:28px;display:grid;place-items:center;border-radius:10px;color:#fff;font-weight:1000;background:linear-gradient(135deg,#7869e8,#ff7ca8);box-shadow:0 3px 0 #e7dfff}
+.game-guide li:nth-child(2) .guide-num{background:linear-gradient(135deg,#36c6a3,#69c8f0)}
+.game-guide li:nth-child(3) .guide-num{background:linear-gradient(135deg,#ff9b65,#ffd45e)}
+.game-guide li:nth-child(4) .guide-num{background:linear-gradient(135deg,#69c8f0,#7464d8)}
+.game-guide li:nth-child(5) .guide-num{background:linear-gradient(135deg,#ff7ca8,#ff9b65)}
+.game-guide li:nth-child(6) .guide-num{background:linear-gradient(135deg,#74dbc0,#7464d8)}
+
+.layout{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:stretch}.card{background:rgba(255,255,255,.88);border:2px solid white;border-radius:28px;padding:clamp(20px,3vw,30px);box-shadow:0 13px 0 rgba(115,100,216,.09),0 20px 45px rgba(60,64,110,.10)}.stage{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:440px;overflow:hidden;position:relative}.stage:before{content:'✿';position:absolute;left:18px;top:14px;color:#ff9fbd;font-size:32px}.stage:after{content:'✦';position:absolute;right:20px;top:28px;color:#ffce48;font-size:29px}.mini-title{font-weight:900;text-transform:uppercase;letter-spacing:.12em;font-size:.75rem;color:#8275c9;text-align:center}.cube-wrap{width:190px;height:190px;perspective:750px;margin:34px 0 27px}.cube{position:relative;width:100%;height:100%;transform-style:preserve-3d;transform:translateZ(-95px) rotateX(-18deg) rotateY(-28deg)}.face{position:absolute;width:190px;height:190px;border:4px solid white;border-radius:28px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:9px;padding:15px;text-align:center;font-size:1.02rem;font-weight:900;line-height:1.2;box-shadow:inset 0 0 0 2px #ffffff65,0 8px 18px #34315b15;backface-visibility:hidden}.face .emoji{font-size:2.5rem;filter:drop-shadow(0 3px 0 #0000000c)}.front{transform:rotateY(0deg) translateZ(95px);background:#ffdce8}.right{transform:rotateY(90deg) translateZ(95px);background:#d5f8ec}.back{transform:rotateY(180deg) translateZ(95px);background:#fff0b8}.left{transform:rotateY(-90deg) translateZ(95px);background:#d9f1ff}.top{transform:rotateX(90deg) translateZ(95px);background:#e5ddff}.bottom{transform:rotateX(-90deg) translateZ(95px);background:#ffdfca}.cube.rolling{animation:tumble 1.7s cubic-bezier(.2,.75,.25,1) both}@keyframes tumble{0%{transform:translateZ(-95px) rotateX(-18deg) rotateY(-28deg)}25%{transform:translateZ(-95px) rotateX(330deg) rotateY(220deg)}62%{transform:translateZ(-95px) rotateX(710deg) rotateY(560deg)}100%{transform:translateZ(-95px) rotateX(var(--rx)) rotateY(var(--ry))}}.hint{min-height:22px;text-align:center;color:#7b8199;font-size:.9rem;margin:0 0 8px}.buttons{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:12px}button{font:inherit;font-weight:900;border:0;border-radius:15px;padding:14px 19px;cursor:pointer;transition:transform .15s,filter .15s,box-shadow .15s}button:hover{transform:translateY(-3px);filter:saturate(1.1)}button:active{transform:translateY(0)}button:focus-visible{outline:4px solid #ffd45e;outline-offset:3px}button:disabled{opacity:.55;cursor:wait;transform:none}.primary{background:linear-gradient(135deg,#7869e8,#a18bff);color:white;box-shadow:0 6px 0 #594bb7}.secondary{background:#ffe1eb;color:#9b4267;box-shadow:0 5px 0 #f4bed2}.question-btn{background:linear-gradient(135deg,#ff9a65,#ffca69);color:#653c29;box-shadow:0 5px 0 #ed8d51}.result-card{background:linear-gradient(145deg,#fff8fd,#f4f2ff);border:2px dashed #d8d0ff;border-radius:22px;padding:21px;margin-top:12px;min-height:180px;position:relative;overflow:hidden}.result-card:after{content:'✧';position:absolute;right:14px;top:7px;font-size:38px;color:#d9cfff}.category-icon{font-size:2.2rem}.result-card h2{font-size:clamp(1.4rem,3vw,2rem);margin:7px 0 10px;line-height:1.15}.result-card p{margin:0;color:#646983;line-height:1.65}.question-panel{margin-top:15px;padding:19px;border-radius:20px;background:#fff5d9;border:2px solid #ffe7a2;display:none;animation:pop .28s ease-out}.question-panel.visible{display:block}@keyframes pop{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}.question-kicker{font-size:.72rem;letter-spacing:.12em;font-weight:900;color:#a66a25;text-transform:uppercase}.question-panel h3{margin:8px 0 0;font-size:1.1rem;line-height:1.6}.instruction{font-size:.86rem;color:#777b91;margin:13px 0 0;line-height:1.5}.topics{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:16px}.topic{display:flex;align-items:center;gap:9px;padding:11px;border-radius:14px;background:white;border:1px solid #eee9f8;font-size:.86rem;font-weight:800}.topic .num{flex:0 0 29px;height:29px;display:grid;place-items:center;border-radius:10px;background:#f0edff;font-size:1rem}.topic:nth-child(2) .num{background:#dff8ee}.topic:nth-child(3) .num{background:#fff0bc}.topic:nth-child(4) .num{background:#dff4ff}.topic:nth-child(5) .num{background:#ffe0eb}.topic:nth-child(6) .num{background:#ffe4d5}.foot{text-align:center;color:#777b91;font-size:.82rem;margin:23px 0 0}.hidden{display:none!important}
+@media(max-width:760px){.game-guide ol{grid-template-columns:1fr}.game-guide{padding:17px}.game-guide li{font-size:.9rem}.layout{grid-template-columns:1fr}.stage{min-height:410px}.topics{grid-template-columns:1fr 1fr}.card{padding:21px}}@media(max-width:420px){.topics{grid-template-columns:1fr}.cube-wrap{transform:scale(.85);margin:20px 0 12px}.stage{min-height:390px}.buttons button{width:100%}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+.group-zone{margin:0 0 22px;background:linear-gradient(135deg,#f4fbff,#fff7fb);border:3px solid #fff;border-radius:26px;padding:20px;box-shadow:0 10px 28px rgba(60,64,110,.08)}
+.zone-title{font-weight:1000;letter-spacing:.03em;color:#6556c4;font-size:1.15rem;margin:0 0 6px}
+.zone-sub{color:#68708a;line-height:1.5;font-size:.9rem;margin:0 0 15px}
+.group-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.group-card{background:#fff;border:2px solid #eee8ff;border-radius:17px;padding:13px;min-width:0}
+.group-card:nth-child(2n){border-color:#d9f5ec}.group-card:nth-child(3n){border-color:#ffe5d2}
+.group-name{font-weight:1000;color:#514a91;margin:0 0 9px}
+.member-input{display:block;width:100%;min-width:0;margin:6px 0;padding:9px 10px;border:1.5px solid #e5e3f3;border-radius:10px;font:inherit;font-size:.84rem;color:var(--ink);background:#fffdfd}
+.member-input:focus,.group-select:focus{outline:3px solid #ffd45e;outline-offset:1px}
+.group-controls{display:grid;grid-template-columns:minmax(180px,1fr) auto auto;gap:10px;align-items:end;margin:16px 0 12px}
+.control-label{display:block;font-size:.78rem;font-weight:900;color:#69658b;margin-bottom:6px}
+.group-select{width:100%;padding:12px;border-radius:12px;border:2px solid #e3def9;background:white;font:inherit;color:var(--ink)}
+.round-tabs{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0 15px}
+.round-tab{padding:9px 12px;border-radius:12px;background:#fff;border:2px solid #e8e2fb;color:#6556c4;box-shadow:none;font-size:.82rem}
+.round-tab.active{background:#7464d8;color:#fff;border-color:#7464d8}
+.round-tab:disabled{opacity:.5;cursor:not-allowed}
+.status-line{padding:10px 12px;border-radius:12px;background:#fff4d8;color:#775425;font-size:.87rem;line-height:1.45;margin:10px 0}
+.status-line.good{background:#e4fbf1;color:#226b58}
+.recap-wrap{overflow-x:auto;border-radius:15px;border:1px solid #eee8ff;background:white}
+.recap-table{width:100%;border-collapse:collapse;min-width:680px;font-size:.84rem}
+.recap-table th,.recap-table td{padding:10px 11px;text-align:left;border-bottom:1px solid #f0edf8;vertical-align:top}
+.recap-table th{background:#f0edff;color:#51458f;font-weight:1000}
+.recap-table tr:last-child td{border-bottom:0}
+.empty-cell{color:#9296aa;font-style:italic}
+.small-btn{padding:10px 13px;border-radius:12px;font-size:.84rem;box-shadow:none}
+.danger-btn{background:#ffe5ec;color:#9b4267}
+.group-status{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:13px 0}
+.group-status-item{background:#fff;border:1px solid #eee8ff;border-radius:12px;padding:10px;font-size:.8rem;line-height:1.4}
+.group-status-item strong{display:block;color:#5f52b2;margin-bottom:4px}
+@media(max-width:760px){.group-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.group-controls{grid-template-columns:1fr}.group-status{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:460px){.group-grid,.group-status{grid-template-columns:1fr}.group-zone{padding:14px}}
+
+</style></head>
+<body><main class="app">
+<header class="hero"><span class="pill">🌈 MEDIA PEMBELAJARAN INTERAKTIF</span><h1><span class="spark">🎲</span> <span class="rainbow">Dadu Jelajah Berita</span></h1><div class="game-guide"><div class="guide-heading">🧭 PETUNJUK PERMAINAN ✨</div><ol><li><span class="guide-num">1</span><span>Putar dadu.</span></li><li><span class="guide-num">2</span><span>Dapatkan kategori.</span></li><li><span class="guide-num">3</span><span>Buka pertanyaan tantanganmu!</span></li><li><span class="guide-num">4</span><span>Tuliskan jawaban yang sesuai dengan teks berita di kartu jawaban yang telah dibagikan.</span></li><li><span class="guide-num">5</span><span>Kumpulkan kartu jawaban.</span></li><li><span class="guide-num">6</span><span>Secara bergantian, anggota kelompok memutar dadu kembali untuk mendapat pertanyaan berikutnya.</span></li></ol></div></header>
+
+<section class="group-zone" aria-labelledby="groupSetupTitle">
+  <h2 class="zone-title" id="groupSetupTitle">👥 Daftar Kelompok & Anggota</h2>
+  <p class="zone-sub">Isi nama enam anggota untuk setiap kelompok. Nama tersimpan selama halaman ini terbuka. Pilih kelompok yang akan mendapat giliran, lalu putar dadu.</p>
+  <div class="group-grid" id="groupGrid"></div>
+  <div class="group-controls">
+    <div><label class="control-label" for="activeGroup">🎯 Kelompok yang sedang mendapat giliran</label><select class="group-select" id="activeGroup"></select></div>
+    <div><label class="control-label" for="activeRound">📚 Putaran ke-</label><select class="group-select" id="activeRound"></select></div>
+    <button class="secondary small-btn" id="resetSessionBtn" type="button">↻ Atur Ulang Rekap</button>
+  </div>
+  <div class="status-line" id="groupStatus" aria-live="polite">Pilih kelompok dan putaran untuk memulai.</div>
+  <div class="group-status" id="groupStatusCards"></div>
+</section>
+
+<section class="group-zone" aria-labelledby="recapTitle">
+  <h2 class="zone-title" id="recapTitle">🗂️ Rekap Urutan Pemutaran Dadu</h2>
+  <p class="zone-sub">Rekap mencatat urutan kelompok yang memutar dadu pada setiap putaran, kategori, dan pertanyaan yang diperoleh. Setiap kelompok akan mendapat enam kategori berbeda selama enam putaran.</p>
+  <div class="round-tabs" id="roundTabs" aria-label="Pilih putaran rekap"></div>
+  <div class="recap-wrap"><table class="recap-table">
+    <thead><tr><th>Urutan</th><th>Kelompok</th><th>Anggota</th><th>Kategori</th><th>Pertanyaan yang Didapat</th></tr></thead>
+    <tbody id="recapBody"><tr><td colspan="5" class="empty-cell">Belum ada kelompok yang memutar dadu.</td></tr></tbody>
+  </table></div>
+</section>
+
+<section class="layout"><div class="card stage"><div class="mini-title">🎯 Ayo tentukan tantanganmu!</div><div class="cube-wrap"><div class="cube" id="cube"><div class="face front"><span class="emoji">🕵️</span>Unsur Berita</div><div class="face right"><span class="emoji">📰</span>Struktur Berita</div><div class="face back"><span class="emoji">✍️</span>Kaidah Kebahasaan</div><div class="face left"><span class="emoji">📣</span>Jenis Berita</div><div class="face top"><span class="emoji">🔎</span>Fakta dan Opini</div><div class="face bottom"><span class="emoji">💡</span>Kesimpulan Berita</div></div></div><p class="hint" id="hint" aria-live="polite">Tekan tombol di bawah untuk mulai!</p><div class="buttons"><button class="primary" id="rollBtn">🎲 PUTAR DADU</button><button class="secondary hidden" id="againBtn">↻ PUTAR ULANG</button></div></div>
+<div class="card"><div class="mini-title">💌 Kartu tantangan kelompok</div><div class="result-card" aria-live="polite" aria-atomic="true"><div class="category-icon" id="resultIcon">🎁</div><div class="mini-title" style="text-align:left">KATEGORI TERPILIH</div><h2 id="resultTitle">Siap untuk bermain?</h2><p id="resultText">Hasil putaran akan muncul di sini. Setelah itu, klik tombol “BUKA PERTANYAAN” untuk melihat tantanganmu.</p></div><div class="buttons" style="justify-content:flex-start"><button class="question-btn" id="questionBtn" disabled>✨ BUKA PERTANYAAN</button></div><div class="question-panel" id="questionPanel" aria-live="polite"><div class="question-kicker" id="questionKicker">PERTANYAAN TANTANGAN</div><h3 id="questionText"></h3></div><div class="mini-title" style="text-align:left;margin-top:22px">Enam sisi dadu</div><div class="topics"><div class="topic"><span class="num">🕵️</span>Unsur Berita</div><div class="topic"><span class="num">📰</span>Struktur Berita</div><div class="topic"><span class="num">✍️</span>Kaidah Kebahasaan</div><div class="topic"><span class="num">📣</span>Jenis Berita</div><div class="topic"><span class="num">🔎</span>Fakta dan Opini</div><div class="topic"><span class="num">💡</span>Kesimpulan Berita</div></div></div></section><footer class="foot">💖 Putar • Baca • Diskusikan • Presentasikan 💖</footer></main>
+<script>
+const categories=[
+{name:'Unsur Berita',icon:'🕵️',questions:['Carilah unsur 5W+1H dari berita yang kamu dapatkan!']},
+{name:'Struktur Berita',icon:'📰',questions:['Analisislah apakah susunan kepala berita, tubuh berita, dan ekor berita dalam teks yang kamu baca sudah membantu pembaca memahami informasi secara runtut. Tunjukkan bagian yang mendukung analisismu untuk setiap bagian!']},
+{name:'Kaidah Kebahasaan',icon:'✍️',questions:['Analisislah bagaimana penggunaan kata baku, konjungsi temporal, verba material atau mental, dan keterangan waktu atau tempat membantu pembaca memahami informasi dalam teks berita. Sertakan contoh yang relevan.','Perhatikan kalimat yang ditemukan dalam teks berita yang menggunakan kata-kata emosional dan tidak baku. Evaluasilah apakah kalimat tersebut sesuai dengan karakteristik bahasa berita. Jelaskan perbaikannya beserta alasanmu.']},
+{name:'Jenis Berita',icon:'📣',questions:['Analisislah karakteristik isi dan cara penyajian teks yang kamu baca untuk menentukan jenis beritanya. Bukti apa dari teks yang paling kuat mendukung klasifikasimu?']},
+{name:'Fakta dan Opini',icon:'🔎',questions:['Analisislah pernyataan-pernyataan dalam teks berita untuk membedakan fakta dan opini. Jelaskan ciri yang kamu gunakan serta bukti yang mendukung pengelompokan tersebut.','Apakah terdapat opini dalam teks? Jika ada, tunjukkan contohnya. Lalu apakah fakta yang disampaikan didukung data, kutipan, atau sumber yang jelas?']},
+{name:'Kesimpulan Berita',icon:'💡',questions:['Susunlah kesimpulan berita dalam dua atau tiga kalimat yang memuat inti peristiwa dan fakta terpenting. Pastikan kesimpulanmu tidak menambahkan informasi yang tidak terdapat dalam teks.']}
+];
+const orientations=[{x:0,y:0},{x:0,y:-90},{x:0,y:-180},{x:0,y:90},{x:-90,y:0},{x:90,y:0}];
+const cube=document.getElementById('cube'),rollBtn=document.getElementById('rollBtn'),againBtn=document.getElementById('againBtn'),questionBtn=document.getElementById('questionBtn'),hint=document.getElementById('hint'),resultIcon=document.getElementById('resultIcon'),resultTitle=document.getElementById('resultTitle'),resultText=document.getElementById('resultText'),questionPanel=document.getElementById('questionPanel'),questionText=document.getElementById('questionText'),questionKicker=document.getElementById('questionKicker');
+const groupGrid=document.getElementById('groupGrid'),activeGroupSelect=document.getElementById('activeGroup'),activeRoundSelect=document.getElementById('activeRound'),groupStatus=document.getElementById('groupStatus'),groupStatusCards=document.getElementById('groupStatusCards'),roundTabs=document.getElementById('roundTabs'),recapBody=document.getElementById('recapBody'),resetSessionBtn=document.getElementById('resetSessionBtn');
+const groupCount=6,roundCount=6;
+let rolling=false,current=null,lastQuestion=-1,roundView=1,rollOrderInRound=0;
+const groups=Array.from({length:groupCount},(_,i)=>({id:i+1,names:Array(6).fill(''),results:[]}));
+const roundLogs=Array.from({length:roundCount},()=>[]);
+function escapeHTML(value){return String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function renderGroups(){
+ groupGrid.innerHTML=groups.map(g=>`<div class="group-card"><div class="group-name">🌈 Kelompok ${g.id}</div>${g.names.map((name,i)=>`<input class="member-input" type="text" maxlength="70" aria-label="Nama anggota ${i+1} kelompok ${g.id}" placeholder="Nama anggota ${i+1}" value="${escapeHTML(name)}" data-group="${g.id}" data-member="${i}">`).join('')}</div>`).join('');
+ activeGroupSelect.innerHTML=groups.map(g=>`<option value="${g.id}">Kelompok ${g.id}</option>`).join('');
+ activeRoundSelect.innerHTML=Array.from({length:roundCount},(_,i)=>`<option value="${i+1}">Putaran ${i+1}</option>`).join('');
+ activeRoundSelect.value='1';
+ groupGrid.querySelectorAll('input').forEach(input=>input.addEventListener('input',e=>{const el=e.target;groups[Number(el.dataset.group)-1].names[Number(el.dataset.member)]=el.value;renderRecap();renderStatus();}));
+ renderRoundTabs();renderStatus();renderRecap();
+}
+function categoryAvailableForGroup(group){const used=new Set(group.results.map(r=>r.categoryIndex));return categories.map((c,i)=>i).filter(i=>!used.has(i));}
+function groupAlreadyRolled(groupId,round){return roundLogs[round-1].some(entry=>entry.groupId===groupId);}
+function renderRoundTabs(){
+ roundTabs.innerHTML=Array.from({length:roundCount},(_,i)=>`<button type="button" class="round-tab ${roundView===i+1?'active':''}" data-round="${i+1}">Putaran ${i+1} ${roundLogs[i].length===groupCount?'✓':''}</button>`).join('');
+ roundTabs.querySelectorAll('button').forEach(btn=>btn.addEventListener('click',()=>{roundView=Number(btn.dataset.round);renderRoundTabs();renderRecap();}));
+}
+function renderStatus(){
+ const group=groups[Number(activeGroupSelect.value||1)-1],round=Number(activeRoundSelect.value||1);
+ const available=categoryAvailableForGroup(group),already=groupAlreadyRolled(group.id,round);
+ const completed=roundLogs[round-1].length;
+ if(already){groupStatus.textContent=`Kelompok ${group.id} sudah memutar dadu pada Putaran ${round}. Pilih kelompok lain untuk melanjutkan putaran ini.`;groupStatus.className='status-line good';}
+ else if(available.length===0){groupStatus.textContent=`Kelompok ${group.id} sudah memperoleh enam kategori berbeda. Tidak ada kategori tersisa untuk kelompok ini.`;groupStatus.className='status-line good';}
+ else if(round!==group.results.length+1){groupStatus.textContent=`Agar setiap kelompok memperoleh enam kategori berbeda secara berurutan, Kelompok ${group.id} perlu menyelesaikan Putaran ${group.results.length+1} terlebih dahulu.`;groupStatus.className='status-line';}
+ else {groupStatus.textContent=`Siap! Kelompok ${group.id} memiliki ${available.length} kategori yang belum didapat. Putaran ${round}: ${completed} dari ${groupCount} kelompok sudah memutar dadu.`;groupStatus.className='status-line';}
+ groupStatusCards.innerHTML=groups.map(g=>`<div class="group-status-item"><strong>Kelompok ${g.id}</strong>${g.results.length}/6 kategori didapat<br>${g.results.length?g.results.map(r=>categories[r.categoryIndex].name).join(' • '):'Belum memutar dadu'}</div>`).join('');
+ const block=already||available.length===0||round!==group.results.length+1;
+ rollBtn.disabled=rolling||block;
+ if(block&&!rolling){hint.textContent=already?'Kelompok ini sudah mendapat giliran pada putaran tersebut.':available.length===0?'Kelompok ini telah menyelesaikan enam kategori.':`Kelompok ini perlu menyelesaikan Putaran ${group.results.length+1} terlebih dahulu.`;}
+}
+function renderRecap(){
+ const entries=roundLogs[roundView-1];
+ recapBody.innerHTML=entries.length?entries.map((e,i)=>{const g=groups[e.groupId-1];return `<tr><td><strong>${i+1}</strong></td><td><strong>Kelompok ${g.id}</strong></td><td>${g.names.filter(n=>n.trim()).map(escapeHTML).join(', ')||'<span class="empty-cell">Nama belum diisi</span>'}</td><td>${categories[e.categoryIndex].icon} ${categories[e.categoryIndex].name}</td><td>${escapeHTML(e.question)}</td></tr>`;}).join(''):'<tr><td colspan="5" class="empty-cell">Belum ada kelompok yang memutar dadu pada putaran ini.</td></tr>';
+ renderRoundTabs();
+}
+function rollDice(){
+ if(rolling)return;
+ const group=groups[Number(activeGroupSelect.value)-1],round=Number(activeRoundSelect.value),available=categoryAvailableForGroup(group);
+ if(groupAlreadyRolled(group.id,round)){renderStatus();return;}
+ if(round!==group.results.length+1){renderStatus();return;}
+ if(!available.length){renderStatus();return;}
+ rolling=true;current=null;rollBtn.disabled=true;againBtn.classList.add('hidden');questionBtn.disabled=true;questionPanel.classList.remove('visible');hint.textContent=`Dadu sedang berputar untuk Kelompok ${group.id}… 🍀`;resultIcon.textContent='🎲';resultTitle.textContent='Mengacak kategori…';resultText.textContent='Siapkan semangat berdiskusimu!';
+ const idx=available[Math.floor(Math.random()*available.length)],face=orientations[idx];current={...categories[idx],categoryIndex:idx,groupId:group.id,round};cube.classList.remove('rolling');cube.style.animation='none';void cube.offsetWidth;cube.style.animation='';cube.style.setProperty('--rx',`${face.x-720}deg`);cube.style.setProperty('--ry',`${face.y+720}deg`);cube.classList.add('rolling');
+ setTimeout(()=>{cube.classList.remove('rolling');cube.style.transform=`translateZ(-95px) rotateX(${face.x}deg) rotateY(${face.y}deg)`;resultIcon.textContent=current.icon;resultTitle.textContent=current.name;resultText.textContent=`Kelompok ${group.id} • Putaran ${round}. Klik “BUKA PERTANYAAN” untuk melihat tantangan.`;questionBtn.disabled=false;questionBtn.textContent='✨ BUKA PERTANYAAN';hint.textContent=`Dadu berhenti! Kelompok ${group.id} mendapatkan kategori ${current.name}.`;rollBtn.disabled=false;againBtn.classList.remove('hidden');rolling=false;renderStatus();},1720);
+}
+function showQuestion(){
+ if(!current)return;
+ const group=groups[current.groupId-1],round=current.round;
+ if(groupAlreadyRolled(group.id,round))return;
+ let qIndex=0;
+ if(current.questions.length>1){qIndex=Math.floor(Math.random()*current.questions.length);if(qIndex===lastQuestion)qIndex=(qIndex+1)%current.questions.length;}
+ lastQuestion=qIndex;
+ const question=current.questions[qIndex];
+ questionKicker.textContent=`Kelompok ${group.id} • Putaran ${round} • Urutan ${roundLogs[round-1].length+1}`;
+ questionText.textContent=question;
+ questionPanel.classList.remove('visible');void questionPanel.offsetWidth;questionPanel.classList.add('visible');
+ group.results.push({round,categoryIndex:current.categoryIndex,question});
+ roundLogs[round-1].push({groupId:group.id,categoryIndex:current.categoryIndex,question});
+ questionBtn.textContent='✓ TERCATAT DI REKAP';questionBtn.disabled=true;
+ hint.textContent=`Tercatat: Kelompok ${group.id} urutan ke-${roundLogs[round-1].length} pada Putaran ${round}. Kategori ini tidak akan terulang untuk kelompok tersebut. ✨`;
+ current=null;againBtn.classList.add('hidden');renderStatus();renderRecap();
+}
+function resetSession(){
+ if(!confirm('Yakin ingin menghapus seluruh rekap enam putaran? Nama anggota tetap disimpan di halaman ini.'))return;
+ groups.forEach(g=>g.results=[]);roundLogs.forEach(log=>log.splice(0,log.length));roundView=1;current=null;lastQuestion=-1;questionPanel.classList.remove('visible');questionText.textContent='';resultIcon.textContent='🎁';resultTitle.textContent='Siap untuk bermain?';resultText.textContent='Hasil putaran akan muncul di sini. Setelah itu, klik tombol “BUKA PERTANYAAN” untuk melihat tantanganmu.';questionBtn.disabled=true;questionBtn.textContent='✨ BUKA PERTANYAAN';againBtn.classList.add('hidden');rollBtn.textContent='🎲 PUTAR DADU';activeRoundSelect.value='1';activeGroupSelect.value='1';hint.textContent='Rekap diatur ulang. Silakan mulai lagi!';renderStatus();renderRecap();
+}
+activeGroupSelect.addEventListener('change',()=>{current=null;questionBtn.disabled=true;questionPanel.classList.remove('visible');renderStatus();});
+activeRoundSelect.addEventListener('change',()=>{roundView=Number(activeRoundSelect.value);current=null;questionBtn.disabled=true;questionPanel.classList.remove('visible');renderStatus();renderRecap();});
+resetSessionBtn.addEventListener('click',resetSession);
+rollBtn.addEventListener('click',rollDice);againBtn.addEventListener('click',rollDice);questionBtn.addEventListener('click',showQuestion);
+renderGroups();
+</script></body></html>
